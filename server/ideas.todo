@@ -1,0 +1,9 @@
+App Overall Idea:
+  ☐ Create an account/ login. Must login to use app.
+  ☐ Each profile will have followers and following and fame. 
+  ☐ Fame is the amount of likes all your photos have in total.
+  ☐ Your profile will have a Timeline album by default. This album cannot be deleted and is automatically public. Anything you want posted to followers feeds will be in here.
+  ☐ Other albums can be created and set to public or private.
+  ☐ On a persons feed it will be default view of photos and updates (updates such as someone uploading new photos to a public album, or creating a public album)
+  ☐ There will be a filter to switch to only photo view, or both, or updates only (maybe)
+  ☐ Faves can be photos that you "favorite" and added to a "favorites" folder on your profile
