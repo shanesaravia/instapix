@@ -41,7 +41,7 @@ let userSchema = new Schema({
 	albums: [{
 		type: String,
 		ref: 'Album'
-	}]
+	}],
 	photos: [{
 		type: String, 
 		ref: 'Photo'
