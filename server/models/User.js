@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 // User Model
 let userSchema = new Schema({
-	id: {
-		type: Number,
-		required: true
-	},
 	first_name: String,
 	last_name: String,
 	email: {
@@ -48,7 +44,7 @@ let userSchema = new Schema({
 	}],
 	created_at: {
 		type: Date,
-		default: Math.floor(new Date() / 1000)
+		default: Math.floor(new Date().getTime() / 1000)
 	},
 	updated_at: {
 		type: Date,
