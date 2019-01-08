@@ -1,0 +1,7 @@
+.search-form input {
+/*  max-width: 60%;*/
+}
+
+.search-form-group input {
+  border-radius: 2rem;
+}

@@ -1,4 +1,10 @@
 const mongoose = require('mongoose');
+const { dbConfig } = require('./configs/config');
 
 // mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/instapix-local', {useNewUrlParser:true});
+mongoose.connect(dbConfig.connection, {useNewUrlParser:true})
+.catch((err) => {
+	console.log('Could not connect to database');
+});
+// to remove depreciation warning
+mongoose.set('useCreateIndex', true);

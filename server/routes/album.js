@@ -1,6 +1,7 @@
+// Express
 const express = require('express');
 const router = express.Router();
-
+// Controllers
 const Album = require('../models/Album');
 
 // Example GET request

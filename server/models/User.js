@@ -3,13 +3,28 @@ const Schema = mongoose.Schema;
 
 // User Model
 let userSchema = new Schema({
-	first_name: String,
-	last_name: String,
+	username: {
+		type: String,
+		required: true,
+		unique: true
+	},
 	email: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
-	display_picture: String,
+	email_verified: {
+		type: Boolean,
+		default: false
+	},
+	auth_id: {
+		type: String,
+		required: true,
+		default: ''
+	},
+	display_picture: {
+		type: String
+	},
 	followers: {
 		type: Number,
 		default: 0
@@ -26,14 +41,6 @@ let userSchema = new Schema({
 		type: String,
 		defualt: ''
 	},
-	username: {
-		type: String,
-		required: true
-	},
-	password: {
-		type: String,
-		required: true
-	},
 	albums: [{
 		type: String,
 		ref: 'Album'
@@ -44,11 +51,11 @@ let userSchema = new Schema({
 	}],
 	created_at: {
 		type: Date,
-		default: Math.floor(new Date().getTime() / 1000)
+		default: Date.now
 	},
 	updated_at: {
 		type: Date,
-		default: Math.floor(new Date() / 1000)
+		default: Date.now
 	}
 });
 

@@ -2,8 +2,8 @@
 const express = require('express');
 const router = express.Router();
 // Controllers
-const indexController = require('../controllers');
+const authController = require('../controllers/auth');
 
-router.get('/', indexController.index);
+router.patch('/setMetadata/:authId', authController.setMetadata);
 
 module.exports = router;
