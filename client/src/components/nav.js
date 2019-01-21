@@ -44,15 +44,14 @@ export default class Nav extends Component {
 	}
 
 	test() {
-		console.log('testing props: ', this.props);
-		this.props.history.push('/test');
+		this.props.history.push('/profile');
 	}
 
 	render() {
 		return (
-			<div>
+			<div className="mb-5">
 				<nav className="navbar py-3 sticky-top navbar-light bg-light justify-content-between">
-				  	<span className="navbar-brand">Instapix</span>
+				  	<span className="navbar-brand"><Link to={'/'}>Instapix</Link></span>
 	                <form onSubmit={ this.onFormSubmit } className="form-inline search-form">
 	                    <div className="search-form-group">
 	                        <input onChange={ this.onSearchChange } value={ this.state.search } 
@@ -60,7 +59,7 @@ export default class Nav extends Component {
 	                    </div>
 	                </form>
 	                <div>
-		                <img id="userIcon" src={ userIcon } onClick={ this.test } />
+		                <Link to={'/profile'}><img id="userIcon" src={ userIcon } /></Link>
 		                <span className="navbar-brand"><Link to={'/login'} onClick={ auth.logout }>Logout</Link></span>
 		            </div>
 				</nav>

@@ -1,0 +1,17 @@
+#user-stats {
+	text-align: center;
+}
+
+#profile-pic img{
+	width: 150px;
+	height: 150px;
+	margin-bottom: 30px;
+}
+
+#follow-stats span{
+	margin: 0 10px;
+}
+
+#separator {
+	width: 80%;
+}
