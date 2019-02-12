@@ -4,6 +4,8 @@ const User = require('../models/User');
 const auth = require('./auth');
 // Requests
 const request = require('request');
+// Firebase
+const db = require('../utils/db');
 // Configs
 const { authManager } = require('../configs/config');
 
@@ -12,35 +14,25 @@ const { authManager } = require('../configs/config');
  */
 const getUser = function(req, res) {
 	const userId = req.params.userId;
+	const userRef = db.collection('users').doc(userId);
 
-	User.findById(userId, (err, user) => {
-		if (err) {
-			res.status(500).send(err);
-		} else {
-			res.send(user);
-		}
+	userRef.get().then(doc => {
+	    if (!doc.exists) {
+	      console.log('Document does not exist');
+	      res.send(false);
+	    } else {
+	      console.log('User Data:', doc.data());
+	      res.send(doc.data());
+	    }
 	})
-};
-
-/**
- * @return {User object without password}
- */
-const getUserManagement = async function(req, res) {
-	const auth_id = req.user.sub;
-	const mgmtToken = await auth.getManagementToken();
-	const instapix_id = await auth.getInstapixId(auth_id, mgmtToken);
-
-	User.findById(instapix_id, (err, user) => {
-		if (err) {
-			res.status(500).send(err);
-		} else {
-			res.send(user);
-		}
+	.catch(err => {
+		console.log('Error getting document', err);
+		res.status(500).send(false);
 	});
+
 };
 
 
 module.exports = {
-	getUser,
-	getUserManagement
+	getUser
 };

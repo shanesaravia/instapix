@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+// const mongoose = require('mongoose');
+// const Schema = mongoose.Schema;
+const Schema = require('schm');
 
 // User Model
 let userSchema = new Schema({
@@ -17,13 +18,9 @@ let userSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	auth_id: {
-		type: String,
-		required: true,
-		default: ''
-	},
 	display_picture: {
-		type: String
+		type: String,
+		default: ''
 	},
 	followers: {
 		type: Number,
@@ -39,7 +36,7 @@ let userSchema = new Schema({
 	},
 	bio: {
 		type: String,
-		defualt: ''
+		default: ''
 	},
 	albums: [{
 		type: String,
@@ -59,6 +56,4 @@ let userSchema = new Schema({
 	}
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = userSchema;

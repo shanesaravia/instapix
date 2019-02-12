@@ -16,7 +16,7 @@ import Login from './components/login';
 import Signup from './components/signup';
 import Callback from './components/callback'
 import Verify from './components/verify';
-import Profile from './components/profile';
+import Profile from './containers/profile';
 // Errors
 import Error404 from './components/errors/Error404';
 // Private Routes

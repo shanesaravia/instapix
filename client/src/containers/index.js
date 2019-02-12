@@ -32,7 +32,6 @@ class Index extends Component {
     }
 
     async componentDidMount() {
-    	console.log('localStorage: ', localStorage);
     	if (!this.props.userData) {
 	    	if (!this.props.authUserData) {
 	    		// Fetches username and email from auth0
@@ -41,7 +40,7 @@ class Index extends Component {
             // Re-routes if email not verified
             this.checkEmailVerification();
 	    	// Fetches user data from instapix API
-    		this.props.fetchUser(this.state.token);
+    		await this.props.fetchUser(this.state.token, this.props.authUserData.sub);
     	}
     }
 

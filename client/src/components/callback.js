@@ -40,20 +40,6 @@ export default class Callback extends Component {
         const auth_id = resp.idTokenPayload.sub;
         const access_token = resp.accessToken;
 
-        // const access_token = localStorage.getItem('access_token');
-        const instapix_id = localStorage.getItem('instapix_id');
-
-        if (instapix_id) {
-            // Save instapix_id to auth0 metadata
-            // instaAPI.patch(`/public/setMetadata/${auth_id}`, {instapix_id})
-            instaAPI.patch(apiConfig.endpoints.metadata_path + auth_id, {instapix_id})
-            .then((success) => {
-                if (!success) {
-                    console.log('Unable to set instapix_id in auth0 metadata.');
-                }
-            })
-        }
-
         // Check if email has been verified and redirect
         if (!resp.idTokenPayload.email_verified) {
             this.props.history.push({

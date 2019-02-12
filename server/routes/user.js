@@ -7,6 +7,5 @@ const auth = require('../utils/auth');
 const userController = require('../controllers/user');
 
 router.get('/:userId', userController.getUser);
-router.get('/', userController.getUserManagement);
 
 module.exports = router;
