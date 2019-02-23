@@ -16,7 +16,7 @@ const publicRoutes = require('./routes/public');
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes');
 const userRoutes = require('./routes/user');
-// const albumRoutes = require('./routes/album');
+const albumRoutes = require('./routes/album');
 // const photoRoutes = require('./routes/photo');
 
 // Middleware
@@ -31,8 +31,8 @@ app.use(cors(corsConfig.corsOptions));
 app.use('/api/', indexRoutes);
 app.use('/api/public', publicRoutes);
 app.use('/api/auth', auth.jwtCheck, authRoutes);
-app.use('/api/user', auth.jwtCheck, userRoutes);
-// app.use('/album', albumRoutes);
+app.use('/api/users', auth.jwtCheck, userRoutes);
+// app.use('/api/albums', auth.jwtCheck, albumRoutes);
 // app.use('/photo', photoRoutes);
 
 module.exports = app;

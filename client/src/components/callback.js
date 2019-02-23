@@ -95,7 +95,7 @@ export default class Callback extends Component {
         if (parsed.success == 'true') {
             try {
                 // Update email_verified
-                instaAPI.patch(apiConfig.endpoints.update_email_verified_path + email)
+                instaAPI.patch(apiConfig.endpoints.update_email_verified_path.replace(':email', email))
             } catch(e) {
                 console.log(`email_verified field was unable to be updated. ${e}`);
             }

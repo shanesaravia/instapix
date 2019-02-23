@@ -30,7 +30,8 @@
     "mongoose": "^5.3.8",
     "mpath": "^0.5.1",
     "request": "^2.88.0",
-    "schm": "^0.4.1"
+    "schm": "^0.4.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

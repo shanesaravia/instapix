@@ -9,7 +9,7 @@ import { fetchUser } from '../actions/user';
 // Custom
 import Auth from '../auth/auth';
 // Components
-import Nav from '../components/nav';
+import Nav from './nav';
 import { Loading } from '../components/loading';
 import Feed from '../components/feed';
 import { Upload } from '../components/upload';

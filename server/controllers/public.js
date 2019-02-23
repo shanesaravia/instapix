@@ -1,6 +1,6 @@
 // Models
-// const User = require('../models/User');
 const userSchema = require('../models/User');
+const albumSchema = require('../models/Album');
 // Requests
 const request = require('request');
 // Auth
@@ -9,7 +9,8 @@ const { getManagementToken } = require('./auth');
 const db = require('../utils/db');
 // Configs
 const { authManager } = require('../configs/config');
-
+// Logs
+const logger = require('../configs/winston');
 
 /**
  * Creates user in instapix db
@@ -29,19 +30,40 @@ const createUser = async function(req, res) {
             username: req.body.username,
             email: req.body.email
         }).catch((err) => {
+            logger.error('User unable to be validated', {error: err});
+            return false;
+        });
+
+        // Validate album with schema
+        const album = await albumSchema.validate({
+            locked: true,
+            private: false
+        }).catch((err) => {
+            logger.error('Album unable to be validated', {error: err});
             return false;
         });
 
         // Write to db
-        if (user) {
-            let usersRef = db.collection('users').doc(req.body.auth_id);
-            usersRef.set(user).then(() => {
-                console.log('User created successfully!');
+        if (user && album) {
+            const usersRef = db.collection('users').doc(req.body.auth_id);
+            const albumRef = db.collection('users').doc(req.body.auth_id).collection('albums').doc('timeline');
+            // Save User Collection
+            usersRef.set(user).then((data) => {
+                logger.debug('User created successfully');
             }).catch((err) => {
-                console.log(`Unable to create new user. Error: ${err}`);
+                logger.error('Unable to create new user', {error: err});
+                res.send(false);
             });
+            // Save Album Subcollection
+            albumRef.set(album).then((data) => {
+                logger.debug('Timeline album created successfully!');
+            }).catch((err) => {
+                logger.error('Unable to create timeline album', {error: err});
+                res.send(false)
+            })
             res.send(true);
         } else {
+            logger.warn('Unable to validate User and Album');
             res.send(false);
         }
 

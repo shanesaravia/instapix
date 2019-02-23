@@ -1,18 +1,15 @@
-// Models
-const User = require('../models/User');
-// Auth
-const auth = require('./auth');
 // Requests
 const request = require('request');
 // Firebase
 const db = require('../utils/db');
-// Configs
-const { authManager } = require('../configs/config');
+// Logs
+const logger = require('../configs/winston');
 
 /**
  * @return {User object without password}
  */
 const getUser = function(req, res) {
+	logger.debug('getUser endpoint called');
 	const userId = req.params.userId;
 	const userRef = db.collection('users').doc(userId);
 
@@ -21,8 +18,9 @@ const getUser = function(req, res) {
 	      console.log('Document does not exist');
 	      res.send(false);
 	    } else {
-	      console.log('User Data:', doc.data());
-	      res.send(doc.data());
+	    	logger.debug(`Retrieved user details for user ${userId}`, {userData: doc.data()})
+			// console.log('User Data:', doc.data());
+			res.send(doc.data());
 	    }
 	})
 	.catch(err => {

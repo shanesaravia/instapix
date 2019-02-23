@@ -81,12 +81,7 @@ export default class Auth {
         instaAPI.post(`/public/createUser`, {
           username: userData.username,
           email: userData.email,
-          auth_id: `auth0|${success.Id}`
-        }).then((res) => {
-          // Save instapix_id in localStorage
-          // Callback will then retrieve and set in user_metadata for Auth0
-          const instapix_id = res.data._id;
-          localStorage.setItem('instapix_id', instapix_id);
+          auth_id: `${success.Id}`
         })
         // Login
         self.login(userData);

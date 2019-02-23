@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const instaAPI = axios.create({
     baseURL: apiConfig.apiRoot,
-    timeout: 5000,
+    timeout: 10000,
     headers: {
         'Accept-Version': 1,
         'Accept': 'application/json',

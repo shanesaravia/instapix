@@ -1,5 +1,3 @@
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
 const Schema = require('schm');
 
 // User Model
@@ -38,14 +36,6 @@ let userSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	albums: [{
-		type: String,
-		ref: 'Album'
-	}],
-	photos: [{
-		type: String, 
-		ref: 'Photo'
-	}],
 	created_at: {
 		type: Date,
 		default: Date.now

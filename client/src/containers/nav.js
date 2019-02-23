@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 // Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+// Actions
+import { fetchAuthUser } from '../actions/authUser';
 // Auth
 import Auth from '../auth/auth';
 // Static
@@ -11,20 +13,25 @@ import userIcon from '../../static/images/user.png';
 
 const auth = new Auth();
 
-export default class Nav extends Component {
+class Nav extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			search: ''
+			token: localStorage.getItem('access_token'),
+			search: '',
+			uid: null
 		}
 
 		this.onSearchChange = this.onSearchChange.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
-		this.test = this.test.bind(this);
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
+    	if (!this.props.authUserData) {
+    		// Fetches user data from auth0
+	    	await this.props.fetchAuthUser(this.state.token);
+    	}
 	}
 
 	/**
@@ -43,10 +50,6 @@ export default class Nav extends Component {
 		this.setState({ search: '' })
 	}
 
-	test() {
-		this.props.history.push('/profile');
-	}
-
 	render() {
 		return (
 			<div className="mb-5">
@@ -59,7 +62,7 @@ export default class Nav extends Component {
 	                    </div>
 	                </form>
 	                <div>
-		                <Link to={'/profile'}><img id="userIcon" src={ userIcon } /></Link>
+            			<Link to={this.props.authUserData ? `/u/${this.props.authUserData.sub}` : '#'}><img id="userIcon" src={ userIcon } /></Link>
 		                <span className="navbar-brand"><Link to={'/login'} onClick={ auth.logout }>Logout</Link></span>
 		            </div>
 				</nav>
@@ -67,3 +70,15 @@ export default class Nav extends Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+    	authUserData: state.authUserData
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchAuthUser }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

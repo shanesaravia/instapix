@@ -1,16 +1,16 @@
-// React
+
 import React, { Component } from 'react';
 // Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
-import { fetchAuthUser } from '../actions/authUser';
-import { fetchUser } from '../actions/user';
+import { fetchAuthUser } from '../../actions/authUser';
+import { fetchUser } from '../../actions/user';
 // Components/Containers
-import Nav from '../components/nav';
-import {Loading} from '../components/loading';
-import userIcon from '../../static/images/user.png';
-import Albums from './albums';
+import Nav from '../nav';
+import { Loading } from '../../components/loading';
+import userIcon from '../../../static/images/user.png';
+import AlbumsGrid from './albumsGrid';
 
 class Profile extends Component {
 	constructor(props){
@@ -18,14 +18,13 @@ class Profile extends Component {
 
         this.state = {
             token: localStorage.getItem('access_token'),
-            statsLoaded: false,
-            albumsLoaded: false
         }
 
         this.showStats = this.showStats.bind(this);
 	}
 
 	async componentDidMount() {
+		console.log('COMPONENT DID MOUNT PROFILE');
     	if (!this.props.userData) {
 	    	if (!this.props.authUserData) {
 	    		// Fetches user data from auth0
@@ -34,6 +33,8 @@ class Profile extends Component {
 	    	// Fetches user data from instapix API
     		await this.props.fetchUser(this.state.token, this.props.authUserData.sub);
 		}
+		console.log('userData: ', this.props.userData);
+		console.log('authUserData: ', this.props.authUserData);
 	}
 
     showStats() {
@@ -61,8 +62,7 @@ class Profile extends Component {
 					<div>
 						{this.showStats()}
 						<hr id="separator" />
-						<button type="button" className="mx-2 btn btn-primary">New Album</button>
-						<Albums />
+						<AlbumsGrid userId={this.props.authUserData.sub} />
 					</div>
 					: <Loading />
 				}

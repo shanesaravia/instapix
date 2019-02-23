@@ -40,7 +40,7 @@ ReactDOM.render(
 	  			<Route path="/signup" component={ Signup } />
 	  			<Route path="/callback" component={ Callback } />
 	  			<PrivateRoute path="/verify" component={ Verify } />
-	  			<PrivateRoute path="/profile" component={ Profile } />
+	  			<PrivateRoute path="/u/:uid" component={ Profile } />
 
 	  			<Route path="/test" component={ Test } />
 	  			<Route component={ Error404 } />

@@ -127,6 +127,23 @@
   background-color: #3b5998;
 }
 
+/* Dropdown Menu */
+.dropdown {
+  /*min-width: 50%;*/
+  display: flex;
+  max-width: 100%;
+  padding: .375em .625em;
+  background: inherit;
+  color: #545454;
+  font-size: 1.125em;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.swal2-actions {
+  margin: 0 !important;
+}
+
 /* Upload Button --------------------------------------------------------------------------*/
 #uploadBtn {
   position: absolute;
@@ -155,3 +172,63 @@
   opacity: 0.7;
   cursor: pointer;
 }
+/* User Icon ------------------------------------------------------------------------------*/
+
+/* ALBUMS GRID ----------------------------------------------------------------------------*/
+.add-album-btn {
+  border-radius: 50% !important;
+  margin: 0 20px;
+  font-size: 28px !important;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: #1b94db;
+  color: white;
+}
+
+.add-album-btn:hover {
+  opacity: 0.7;
+}
+
+#albums-grid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+}
+/* ALBUMS GRID END -----------------------------------------------------------------------*/
+
+/* Album Tile Begins ---------------------------------------------------------------------*/
+#album-tile {
+  width: 300px;
+  position: relative;
+}
+
+#album-tile img {
+  width: 260px;
+  padding: 0px 20px;
+}
+
+#album-img-group:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#album-img-group {
+  width: 260px;
+}
+
+.priv-img {
+  width: 25% !important;
+  position: absolute;
+  top: -10px;
+  right: 40px;
+}
+
+#album-tile h3 {
+  text-align: center;
+  position: relative;
+  left: -40px;
+}
+
+/* Album Tile Ends -----------------------------------------------------------------------*/
