@@ -7,13 +7,14 @@ import { bindActionCreators } from 'redux';
 import swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // Static
-import albumImg from '../../../static/images/album.png';
+import albumImg from 'static/images/album.png';
 // Requests
-import { instaAPI } from '../../utils/axios';
+import { instaAPI } from 'src/utils/axios';
 // Configs
-import { apiConfig } from '../../../configs/config';
+import { apiConfig } from 'configs/config';
 // Individual album modules
 import AlbumTile from './albumTile';
+import CreateAlbum from './createAlbum';
 
 const mySwal = withReactContent(swal);
 
@@ -37,7 +38,15 @@ export default class Albums extends Component {
 	getAlbums() {
 		const headers = { Authorization: `Bearer ${this.state.token}` };
 		instaAPI.get(apiConfig.endpoints.get_albums_url.replace(':userId', this.props.userId), {headers}).then(albums => {
-			this.setState({albums: albums.data});
+			// Filter out private albums if not users own profile
+			if (!this.props.myProfile) {
+				const filteredAlbums = albums.data.filter((album) => {
+					return album.private == false;
+				})
+				this.setState({albums: filteredAlbums});
+			} else {
+				this.setState({albums: albums.data});
+			}
 		})
 	}
 
@@ -96,11 +105,10 @@ export default class Albums extends Component {
 	}
 
     render() {
+    	const createAlbumBtn = this.props.myProfile ? <CreateAlbum create={this.createAlbum} /> : null
     	return (
     		<div>
-    			<div>
-					<button type="button" onClick={this.createAlbum} className="add-album-btn btn">+</button>
-				</div>
+				{createAlbumBtn}
 				<div id="albums-grid">
 					{this.showAlbums()}
 	    		</div>

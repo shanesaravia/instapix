@@ -1,7 +1,7 @@
 import { FETCH_USER } from './action-types';
-import { instaAPI } from '../utils/axios';
+import { instaAPI } from 'src/utils/axios';
 import axios from 'axios';
-import { apiConfig } from '../../configs/config';
+import { apiConfig } from 'configs/config';
 
 /**
  * Fetches user data from instapix

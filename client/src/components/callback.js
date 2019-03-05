@@ -4,16 +4,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Auth
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 // Components
-import Error500 from '../components/errors/Error500';
+import Error500 from 'components/errors/Error500';
 // Third Party
 import qs from 'query-string';
 import swal from 'sweetalert2';
 // Requests
-import { instaAPI } from '../utils/axios';
+import { instaAPI } from 'src/utils/axios';
 // Configs
-import { apiConfig } from '../../configs/config';
+import { apiConfig } from 'configs/config';
 
 const auth = new Auth();
 

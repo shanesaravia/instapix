@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 // Requests
 import axios from 'axios';
 // Auth
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 
 const auth = new Auth();
 

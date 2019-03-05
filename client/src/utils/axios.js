@@ -1,4 +1,4 @@
-import { apiConfig } from '../../configs/config';
+import { apiConfig } from 'configs/config';
 // import { authManagerConfig } from '../../configs/config';
 import axios from 'axios';
 

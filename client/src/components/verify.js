@@ -7,13 +7,13 @@ import { bindActionCreators } from 'redux';
 import swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // Auth
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 // Actions
-import { fetchAuthUser } from '../actions/authUser';
+import { fetchAuthUser } from 'src/actions/authUser';
 // Configs
-import { apiConfig } from '../../configs/config';
+import { apiConfig } from 'configs/config';
 // Requests
-import { instaAPI } from '../utils/axios';
+import { instaAPI } from 'src/utils/axios';
 
 const mySwal = withReactContent(swal);
 const auth = new Auth();

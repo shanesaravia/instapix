@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 import qs from 'query-string';
 
 // const auth = new Auth();

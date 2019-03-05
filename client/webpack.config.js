@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
@@ -20,6 +21,10 @@ module.exports = {
       {
       test: /\.(gif|svg|jpg|png)$/,
       use: {loader: "file-loader"}
+      },
+      {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -35,5 +40,14 @@ module.exports = {
     // }
   },
   devtool: '#eval-source-map',
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin],
+  resolve: {
+    alias: {
+      static: path.resolve(__dirname, './static'),
+      configs: path.resolve(__dirname, './configs'),
+      components: path.resolve(__dirname, './src/components'),
+      containers: path.resolve(__dirname, './src/containers'),
+      src: path.resolve(__dirname, './src')
+    }
+  }
 };

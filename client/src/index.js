@@ -11,19 +11,21 @@ import promise from 'redux-promise';
 // Reducers
 import reducers from './reducers';
 // Components/Containers
-import Index from './containers';
-import Login from './components/login';
-import Signup from './components/signup';
-import Callback from './components/callback'
-import Verify from './components/verify';
-import Profile from './containers/profile';
+import Index from 'containers';
+import Login from 'components/login';
+import Signup from 'components/signup';
+import Callback from 'components/callback'
+import Verify from 'components/verify';
+import Profile from 'containers/profile';
+import Album from 'containers/album';
+import Photo from 'containers/photo';
 // Errors
-import Error404 from './components/errors/Error404';
+import Error404 from 'components/errors/Error404';
 // Private Routes
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from 'components/PrivateRoute';
 
 // Test Components
-import Test from './components/test';
+import Test from 'components/test';
 
 const middlewares = [thunk, promise]
 
@@ -40,7 +42,9 @@ ReactDOM.render(
 	  			<Route path="/signup" component={ Signup } />
 	  			<Route path="/callback" component={ Callback } />
 	  			<PrivateRoute path="/verify" component={ Verify } />
-	  			<PrivateRoute path="/u/:uid" component={ Profile } />
+	  			<PrivateRoute exact path="/u/:uid" component={ Profile } />
+	  			<PrivateRoute exact path="/u/:uid/a/:album" component={ Album } />
+	  			<PrivateRoute exact path="/u/:uid/a/:album/p/:photo" component={ Photo } />
 
 	  			<Route path="/test" component={ Test } />
 	  			<Route component={ Error404 } />

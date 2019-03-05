@@ -147,8 +147,8 @@
 /* Upload Button --------------------------------------------------------------------------*/
 #uploadBtn {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 30px;
+  right: 30px;
 }
 
 #uploadBtn img {
@@ -232,3 +232,60 @@
 }
 
 /* Album Tile Ends -----------------------------------------------------------------------*/
+/* Go Back Arrow Starts ------------------------------------------------------------------*/
+.go-back {
+  position: relative;
+  margin-left: 10px;
+  top: -35px;
+  height: 0;
+}
+
+.go-back-text {
+  color: black;
+}
+
+.go-back a:hover {
+   text-decoration:none;
+ }
+
+.back-arrow {
+  height: 30px;
+  margin-right: 5px;
+}
+/* Go Back Arrow Ends --------------------------------------------------------------------*/
+/* Album Page Starts ---------------------------------------------------------------------*/
+#album-banner img{
+  width: 100%;
+  height: 450px;
+  opacity: 0.5;
+  padding: 0;
+  margin: 0;
+}
+
+#album-banner {
+  position: relative;
+  background-color: black;
+}
+
+#album-title {
+  position: absolute;
+  display: block;
+  color: white;
+  top: 160px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 56px;
+}
+
+#photo-count {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#upload-photos {
+  margin: 10px;
+}
+/* Album Page Ends -----------------------------------------------------------------------*/

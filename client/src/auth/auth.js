@@ -1,8 +1,8 @@
 import React from 'react';
 import auth0 from 'auth0-js';
 import Swal from 'sweetalert2';
-import { authConfig } from '../../configs/config';
-import { instaAPI } from '../utils/axios';
+import { authConfig } from 'configs/config';
+import { instaAPI } from 'src/utils/axios';
 
 export default class Auth {
 
@@ -13,7 +13,11 @@ export default class Auth {
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.setSession = this.setSession.bind(this);
+
+    this.scheduleRenewal();
   }
+
+  tokenRenewalTimeout;
 
   auth0 = new auth0.WebAuth({
     domain: authConfig.domain,
@@ -116,6 +120,9 @@ export default class Auth {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('instapix_id');
+
+    // Clear token renewal
+    clearTimeout(this.tokenRenewalTimeout);
   }
 
   /**
@@ -145,6 +152,9 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+
+    // schedule a token renewal
+    this.scheduleRenewal();
   }
 
   /**
@@ -171,5 +181,41 @@ export default class Auth {
         }
       })
     })
+  }
+
+  /**
+   * Renews auth0 token
+   */
+  renewSession() {
+    this.auth0.checkSession({}, (err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult);
+        } else if (err) {
+          this.logout();
+          console.log(err);
+          alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+        }
+    });
+  }
+
+  /**
+   * Schedules auth0 token renewal
+   */
+  scheduleRenewal() {
+    let expiresAt = localStorage.getItem('expiresAt');
+    const timeout = expiresAt - Date.now();
+    if (timeout > 0) {
+      this.tokenRenewalTimeout = setTimeout(() => {
+        this.renewSession();
+      }, timeout);
+    }
+  }
+
+  /**
+   * Gets auth0 expiry in Date format
+   * @return {str} auth0 token expiry
+   */
+  getExpiryDate() {
+    return JSON.stringify(new Date(this.expiresAt));
   }
 }

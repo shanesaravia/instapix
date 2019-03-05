@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // Auth
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 
 const auth = new Auth();
 

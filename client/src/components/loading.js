@@ -1,7 +1,7 @@
 // React
 import React, { Component } from 'react';
 // Static
-import loading from '../../static/images/loading.gif';
+import loading from 'static/images/loading.gif';
 
 export const Loading = () => {
 	return (

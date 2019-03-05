@@ -4,18 +4,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
-import { fetchAuthUser } from '../actions/authUser';
-import { fetchUser } from '../actions/user';
+import { fetchAuthUser } from 'src/actions/authUser';
+import { fetchUser } from 'src/actions/user';
 // Custom
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 // Components
-import Nav from './nav';
-import { Loading } from '../components/loading';
-import Feed from '../components/feed';
-import { Upload } from '../components/upload';
+import Nav from 'containers/nav';
+import { Loading } from 'components/loading';
+import Feed from 'components/feed';
+import { Upload } from 'components/upload';
 
 // testing
-import example from '../../static/images/example.jpg';
+import example from 'static/images/example.jpg';
 
 const auth = new Auth();
 

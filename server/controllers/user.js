@@ -19,8 +19,9 @@ const getUser = function(req, res) {
 	      res.send(false);
 	    } else {
 	    	logger.debug(`Retrieved user details for user ${userId}`, {userData: doc.data()})
-			// console.log('User Data:', doc.data());
-			res.send(doc.data());
+	    	const id = doc.id;
+	    	const data = doc.data();
+			res.send({id, ...data});
 	    }
 	})
 	.catch(err => {

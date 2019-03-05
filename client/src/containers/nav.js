@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
-import { fetchAuthUser } from '../actions/authUser';
+import { fetchAuthUser } from 'src/actions/authUser';
 // Auth
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 // Static
-import userIcon from '../../static/images/user.png';
+import userIcon from 'static/images/user.png';
+import {withRouter} from 'react-router';
 
 const auth = new Auth();
 
@@ -51,6 +52,8 @@ class Nav extends Component {
 	}
 
 	render() {
+		let location = this.props.authUserData ? `/u/${this.props.authUserData.sub}` : '#';
+		let uid = this.props.authUserData ? this.props.authUserData.sub : '#';
 		return (
 			<div className="mb-5">
 				<nav className="navbar py-3 sticky-top navbar-light bg-light justify-content-between">
@@ -62,6 +65,14 @@ class Nav extends Component {
 	                    </div>
 	                </form>
 	                <div>
+{/* 						<Link to={{ */}
+{/* 							pathname: `${location}`, */}
+{/* 							state: { */}
+{/* 							  uid: uid */}
+{/* 							} */}
+{/* 						}}> */}
+{/* 						<img id="userIcon" src={ userIcon } /> */}
+{/* 						</Link> */}
             			<Link to={this.props.authUserData ? `/u/${this.props.authUserData.sub}` : '#'}><img id="userIcon" src={ userIcon } /></Link>
 		                <span className="navbar-brand"><Link to={'/login'} onClick={ auth.logout }>Logout</Link></span>
 		            </div>
@@ -81,4 +92,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ fetchAuthUser }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

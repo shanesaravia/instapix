@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 // Requests
 import axios from 'axios';
 // Auth
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 
 // testing
-import example from '../../static/images/example.jpg';
+import example from 'static/images/example.jpg';
 
 const auth = new Auth();
 

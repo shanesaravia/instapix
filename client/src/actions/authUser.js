@@ -1,5 +1,5 @@
 import { FETCH_AUTH_USER } from './action-types';
-import Auth from '../auth/auth';
+import Auth from 'src/auth/auth';
 
 /**
  * Fetches auth user data from auth0

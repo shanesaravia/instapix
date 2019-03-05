@@ -1,4 +1,4 @@
-import { FETCH_AUTH_USER } from '../actions/action-types';
+import { FETCH_AUTH_USER } from 'src/actions/action-types';
 let initialState = null;
 
 export default function(state = initialState, action) {
